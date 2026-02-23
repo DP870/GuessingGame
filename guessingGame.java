@@ -32,16 +32,16 @@ class GameConfig{
 }
 
 /**
-* GuessingApp -Use Case 3: Game Intialization
+* GuessingApp -Use Case 4: Error Handling & Validation
 * This class serves as the application entry point.
 * It initializes the game configuration and displays game rules.
 * User input has been setup.
 * @author Dhruv
-* @version 3.0
+* @version 4.0
 */
 
 public class guessingGame{
-	public static void main(String[] args){
+	public static void main(String[] args) throws InvalidInputException {
 		System.out.println("Welcome to the Guessing App");
 		
 		GameConfig config = new GameConfig();
@@ -54,24 +54,36 @@ public class guessingGame{
 			System.out.print("Enter your guess: ");
 			int guess=scanner.nextInt();
 			attempts++;
-			int hintCount=1;
+			int hintCount=0;
 			String result =GuessValidator.validateGuess(guess, config.getTargetNumber());
 			String hint=HintService.generateHint(config.getTargetNumber(),hintCount);
 			hintCount++;
-			System.out.println(result);
+			
 			boolean hintFlag=true;
 			
 			if ("Correct".equals(result)){
+				System.out.println("CORRECT");
 				break;
 			}
 			
 			if(hintFlag) System.out.println(hint);
 			
-			if (hint == "No more hints available") {
+			if (hint.equals("No more hints available")) {
 				hintFlag=false;
 				
 			};
+			/*
+			
+			if (!"Correct".equals(result) && hintCount< config.getMaxHints()) {
+				hintCount++;
+				System.out.println( HintService.generateHint(config.getTargetNumber(), hintCount));
 				
-		}
+		}; */
+	System.out.println(result);
+	
+	if("Correct".equals(result)){
+		break;
 	}
+	}
+}
 }

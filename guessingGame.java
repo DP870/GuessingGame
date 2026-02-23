@@ -46,6 +46,8 @@ public class guessingGame{
 	public static void main(String[] args) throws InvalidInputException {
 		
 		Scanner scanner=new Scanner(System.in);
+		boolean restart;
+		do {
 		System.out.println("===========================");
 		System.out.println("Welcome to the Guessing App");
 		System.out.println("===========================");
@@ -98,5 +100,7 @@ public class guessingGame{
 	}
 	}
 	StorageService.saveResult(player,attempts,win);
+	restart=GameController.restartGame(scanner);
+		}while (restart);
 }
 }

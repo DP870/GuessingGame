@@ -1,3 +1,5 @@
 Player:Dhruv, Attempts: 7, Result: LOSE
 Player:Dhruv, Attempts: 5, Result: WIN
 Player:Dhruv, Attempts: 7, Result: LOSE
+Player:Dhruv, Attempts: 7, Result: WIN
+Player:Dhruv, Attempts: 7, Result: WIN

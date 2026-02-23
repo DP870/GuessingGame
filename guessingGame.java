@@ -32,12 +32,12 @@ class GameConfig{
 }
 
 /**
-* GuessingApp -Use Case 1: Game Intialization
+* GuessingApp -Use Case 3: Game Intialization
 * This class serves as the application entry point.
 * It initializes the game configuration and displays game rules.
-* No user input or gameplay logic is implemented at this stage.
+* User input has been setup.
 * @author Dhruv
-* @version 1.0
+* @version 3.0
 */
 
 public class guessingGame{
@@ -54,14 +54,23 @@ public class guessingGame{
 			System.out.print("Enter your guess: ");
 			int guess=scanner.nextInt();
 			attempts++;
-			
+			int hintCount=1;
 			String result =GuessValidator.validateGuess(guess, config.getTargetNumber());
+			String hint=HintService.generateHint(config.getTargetNumber(),hintCount);
+			hintCount++;
 			System.out.println(result);
-			
+			boolean hintFlag=true;
 			
 			if ("Correct".equals(result)){
 				break;
 			}
+			
+			if(hintFlag) System.out.println(hint);
+			
+			if (hint == "No more hints available") {
+				hintFlag=false;
+				
+			};
 				
 		}
 	}

@@ -1,4 +1,5 @@
-import java.util.Random;
+import java.util.*;
+
 class GameConfig{
 	private final int MIN=1;
 	private final int MAX=100;
@@ -18,7 +19,7 @@ class GameConfig{
 	
 	public int getTargetNumber(){ return targetNumber;}
 	
-	public int getMaxAttempts() { return MAX_ATTEMPTS;}
+	public int getMaxAttempts() {return MAX_ATTEMPTS;}
 	
 	public int getMaxHints() {return MAX_HINTS;}
 	
@@ -42,12 +43,26 @@ class GameConfig{
 public class guessingGame{
 	public static void main(String[] args){
 		System.out.println("Welcome to the Guessing App");
-		GameConfig gameConfig = new GameConfig();
-		gameConfig.showRules();
 		
+		GameConfig config = new GameConfig();
+		config.showRules();
 		
+		Scanner scanner=new Scanner(System.in);
+		int attempts=0;
+		
+		while (attempts< config.getMaxAttempts()){
+			System.out.print("Enter your guess: ");
+			int guess=scanner.nextInt();
+			attempts++;
+			
+			String result =GuessValidator.validateGuess(guess, config.getTargetNumber());
+			System.out.println(result);
+			
+			
+			if ("Correct".equals(result)){
+				break;
+			}
+				
+		}
 	}
-	
-	
-	
 }

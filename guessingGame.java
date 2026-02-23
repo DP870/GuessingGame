@@ -52,9 +52,10 @@ public class guessingGame{
 		
 		while (attempts< config.getMaxAttempts()){
 			System.out.print("Enter your guess: ");
-			int guess=scanner.nextInt();
+			
 			attempts++;
 			int hintCount=0;
+			int guess = ValidationService.validateInput(scanner.nextLine());
 			String result =GuessValidator.validateGuess(guess, config.getTargetNumber());
 			String hint=HintService.generateHint(config.getTargetNumber(),hintCount);
 			hintCount++;

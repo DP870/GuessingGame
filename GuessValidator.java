@@ -15,10 +15,12 @@ class GuessValidator {
 			return "Correct";
 			
 		}
-		else if (guess<target){
-			return "Low";
+		// if guess is less than target then low gets printed
+		// if LOW then Target is greater
+		else if (guess<target){     
+			return "Your guess is lower than the target";
 	}
-	return "High";
+	return "Your guess is higher than the target";
 }
 }
 

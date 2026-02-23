@@ -32,23 +32,33 @@ class GameConfig{
 }
 
 /**
-* GuessingApp -Use Case 4: Error Handling & Validation
+* GuessingApp -Use Case 5: Game Result Storage
 * This class serves as the application entry point.
 * It initializes the game configuration and displays game rules.
 * User input has been setup.
+* It saves the players scores in a text file.
+* This class coordinated the complete game flow.
 * @author Dhruv
-* @version 4.0
+* @version 5.0
 */
 
 public class guessingGame{
 	public static void main(String[] args) throws InvalidInputException {
+		
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("===========================");
 		System.out.println("Welcome to the Guessing App");
+		System.out.println("===========================");
+		System.out.println("Enter Your Name: ");
+		String player = scanner.nextLine();
 		
 		GameConfig config = new GameConfig();
 		config.showRules();
 		
-		Scanner scanner=new Scanner(System.in);
 		int attempts=0;
+		boolean win = false;
+		
+		
 		
 		while (attempts< config.getMaxAttempts()){
 			System.out.print("Enter your guess: ");
@@ -64,6 +74,7 @@ public class guessingGame{
 			
 			if ("Correct".equals(result)){
 				System.out.println("CORRECT");
+				win=true;
 				break;
 			}
 			
@@ -86,5 +97,6 @@ public class guessingGame{
 		break;
 	}
 	}
+	StorageService.saveResult(player,attempts,win);
 }
 }
